@@ -1,25 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import MainContent from "./components/MainContent";
+import Header from "./components/Header";
+import AddNew from "./components/AddNew";
+import Content from "./components/Content";
+import React from "react";
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+          {/*<div id="preloader">*/}
+          {/*  <div id="status">*/}
+          {/*    <div className="preloader-logo" />*/}
+          {/*  </div>*/}
+          {/*</div>*/}
+          <div className="gallery-fix" /> {}
+          <Header></Header>
+          <AddNew></AddNew>
+          <Content></Content>
+      </div>
   );
 }
-
-export default App;
+export default App

@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import OneMinuteApp from "./components/OneMinuteApp";
+
+import './assets/styles/style.css';
+import './assets/styles/framework.css';
+import './assets/styles/line-awesome.css';
+import './assets/styles/animate.css';
+import './assets/styles/select2.min.css';
+import './assets/styles/poll.css';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
