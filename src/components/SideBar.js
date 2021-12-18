@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react'
 const SideBar = ({click = false}) => {
     const [sideBarClick, setSideBarClick] = useState(false);
     useEffect(() => {
+        console.log(click)
         setSideBarClick(click)
     }, [click])
     return (
