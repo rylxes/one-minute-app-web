@@ -15,7 +15,7 @@ class SharedWithMe extends React.Component {
                 </div>
                 <div className="contents">
                   <h4>
-                    <a  title="View Poll">
+                    <a href="view-poll.html" title="View Poll">
                       Which state is richer?
                       <span>
                         There are 36 States in Nigeria, which do you think is
@@ -71,19 +71,20 @@ class SharedWithMe extends React.Component {
                       <div className="footer">
                         <div className="top-buttons">
                           <a
+                            href="javascript:void(0);"
                             className="buttonWrap button-blue"
                           >
                             Share
                           </a>
                           <a
-
+                            href="javascript:void(0);"
                             className="buttonWrap button-red"
                           >
                             Cancel
                           </a>
                         </div>
                         <div className="buttom-link">
-                          <a  className="text-link">
+                          <a href="javascript:void(0);" className="text-link">
                             Share As Link
                           </a>
                         </div>
@@ -100,7 +101,7 @@ class SharedWithMe extends React.Component {
                 </div>
                 <div className="contents">
                   <h4>
-                    <a  title="View Poll">
+                    <a href="view-poll.html" title="View Poll">
                       Will Tinubu run in 2023?
                       <span>
                         Senator Bola Ahmed Tinubu is considered to be interested
@@ -151,20 +152,20 @@ class SharedWithMe extends React.Component {
                       <div className="footer">
                         <div className="top-buttons">
                           <a
-
+                            href="javascript:void(0);"
                             className="buttonWrap button-blue"
                           >
                             Share
                           </a>
                           <a
-
+                            href="javascript:void(0);"
                             className="buttonWrap button-red"
                           >
                             Cancel
                           </a>
                         </div>
                         <div className="buttom-link">
-                          <a  className="text-link">
+                          <a href="javascript:void(0);" className="text-link">
                             Share As Link
                           </a>
                         </div>
@@ -181,7 +182,7 @@ class SharedWithMe extends React.Component {
                 </div>
                 <div className="contents">
                   <h4>
-                    <a  title="View Poll">
+                    <a href="view-poll.html" title="View Poll">
                       Super Eagles vs Cameroun?
                       <span>
                         Super Eagles of Nigeria played a two-legged friendly
@@ -237,20 +238,20 @@ class SharedWithMe extends React.Component {
                       <div className="footer">
                         <div className="top-buttons">
                           <a
-
+                            href="javascript:void(0);"
                             className="buttonWrap button-blue"
                           >
                             Share
                           </a>
                           <a
-
+                            href="javascript:void(0);"
                             className="buttonWrap button-red"
                           >
                             Cancel
                           </a>
                         </div>
                         <div className="buttom-link">
-                          <a  className="text-link">
+                          <a href="javascript:void(0);" className="text-link">
                             Share As Link
                           </a>
                         </div>

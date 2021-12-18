@@ -8,25 +8,25 @@ class Footer extends React.Component {
           <div className="footer-menu">
             <ul className="h-menu">
               <li className="menu-item current-item">
-                <a>
+                <a href="index.html">
                   <i className="las la-home" />
                   <span>Home</span>
                 </a>
               </li>
               <li className="menu-item">
-                <a>
+                <a href="my-polls.html">
                   <i className="las la-poll" />
                   <span>Polls</span>
                 </a>
               </li>
               <li className="menu-item">
-                <a>
+                <a href="my-profile.html">
                   <i className="las la-user" />
                   <span>Profile</span>
                 </a>
               </li>
               <li className="menu-item">
-                <a>
+                <a href="help.html">
                   <i className="las la-cog" />
                   <span>Help</span>
                 </a>
