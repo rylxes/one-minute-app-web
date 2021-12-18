@@ -19,7 +19,7 @@ function App2() {
             <div className="gallery-fix"></div>
 
             <div id="header-fixed" className="header-style-1">
-                <a className="header-1 open-left-sidebar" onClick={() => setSideBarClick(!sideBarClickx`x`)}><i className="las la-bars"></i></a>
+                <a className="header-1 open-left-sidebar" onClick={() => setSideBarClick(!sideBarClick)}><i className="las la-bars"></i></a>
                 <h2 className="logo"><a href="index.html">OnePoll</a></h2>
                 <a id="open-search" className="header-2" onClick={() => setSearchClick(true)}><span><i
                     className="las la-search flip"></i></span></a>
