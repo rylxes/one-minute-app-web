@@ -1,7 +1,16 @@
-import React from "react";
+import React, {useEffect, useState} from 'react';
 
-class SharedWithMe extends React.Component {
-  render() {
+
+//class SharedWithMe extends React.Component {
+  function SharedWithMe() {
+
+    const [isActive, setActive] = useState("false");
+    const handleShare = () => {
+    setActive(!isActive);
+    };
+  
+ // render() {
+    
     return (
       <div className="container">
         <h4>Polls Shared With Me</h4>
@@ -11,7 +20,7 @@ class SharedWithMe extends React.Component {
             <div className="item grid col-5">
               <div className="grid-top">
                 <div className="image-holder">
-                  <img src="uploads/test/nigeria-rename.jpg" />
+                  <img src="https://demovalley.com/onepoll/web/uploads/test/nigeria-rename.jpg" />
                 </div>
                 <div className="contents">
                   <h4>
@@ -49,8 +58,8 @@ class SharedWithMe extends React.Component {
                   <i className="las la-user" /> Audrey
                 </div>
                 <div className="share-wrap" title="Share">
-                  <em className="share show-submenu" />
-                  <div className="submenu share-routes">
+                  <em className="share show-submenu" onClick={handleShare}/>
+                  <div className={isActive ? "submenu share-routes" : "submenu share-routes submenu-active"}>
                     <div className="sharePrompt">
                       <div className="header">
                         <h4>Share Poll With Friends</h4>
@@ -97,7 +106,7 @@ class SharedWithMe extends React.Component {
             <div className="item grid col-5">
               <div className="grid-top">
                 <div className="image-holder">
-                  <img src="images/bola_ahmed_tinubu_2023.jpg" />
+                  <img src="https://demovalley.com/onepoll/web/images/bola_ahmed_tinubu_2023.jpg" />
                 </div>
                 <div className="contents">
                   <h4>
@@ -130,8 +139,8 @@ class SharedWithMe extends React.Component {
                   <i className="las la-user" /> Audrey
                 </div>
                 <div className="share-wrap" title="Share">
-                  <em className="share show-submenu" />
-                  <div className="submenu share-routes">
+                <em className="share show-submenu" onClick={handleShare}/>
+                  <div className={isActive ? "submenu share-routes" : "submenu share-routes submenu-active"}>
                     <div className="sharePrompt">
                       <div className="header">
                         <h4>Share Poll With Friends</h4>
@@ -178,7 +187,7 @@ class SharedWithMe extends React.Component {
             <div className="item grid col-5">
               <div className="grid-top">
                 <div className="image-holder">
-                  <img src="images/cameroon-vs-nigeria.jpg" />
+                  <img src="https://demovalley.com/onepoll/web/images/cameroon-vs-nigeria.jpg" />
                 </div>
                 <div className="contents">
                   <h4>
@@ -216,8 +225,8 @@ class SharedWithMe extends React.Component {
                   <i className="las la-user" /> Audrey
                 </div>
                 <div className="share-wrap" title="Share">
-                  <em className="share show-submenu" />
-                  <div className="submenu share-routes">
+                <em className="share show-submenu" onClick={handleShare}/>
+                  <div className={isActive ? "submenu share-routes" : "submenu share-routes submenu-active"}>
                     <div className="sharePrompt">
                       <div className="header">
                         <h4>Share Poll With Friends</h4>
@@ -266,6 +275,5 @@ class SharedWithMe extends React.Component {
       </div>
     );
   }
-}
-
+//}
 export default SharedWithMe;

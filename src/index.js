@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App2 from './App2';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './assets/styles/style.css';
-// import './assets/styles/framework.css';
+import './assets/styles/framework.css';
 import './assets/styles/line-awesome.css';
 import './assets/styles/animate.css';
 import './assets/styles/select2.min.css';
@@ -14,7 +14,7 @@ import './assets/styles/poll.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App2 />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

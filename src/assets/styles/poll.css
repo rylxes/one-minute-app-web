@@ -88,6 +88,7 @@ a:hover, .anchor:hover{
     line-height: 60px;
 	position: absolute;
     z-index: 1001;
+    cursor: pointer;
 }
 .header-style-1 .header-1 i {
     height: 60px;
@@ -202,16 +203,57 @@ a:hover, .anchor:hover{
     text-align: center;
     line-height: 50px;
 }
+.left-sidebar{
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
 #content {
 	background-color: unset;
 	background: var(--light-pink);
     background-image: url(../images/geometry.png);
 	background-repeat: repeat;
     overflow-x: hidden;
+    overflow-y: scroll;
 	padding-top: 80px;
+    position: absolute;
+    background-attachment: fixed;
 }
+.header-2, .close-sidebar{cursor:pointer;}
+.open-menu, .open-header{
+    overflow-y: hidden; 
+    transform: translate3d(266px, 0px, 0px);
+    transition: all ease-in .2s;
+  }
+.close-menu, .close-header{
+    overflow-y: hidden;
+    transition: all ease-in .2s;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: inline-block;
+}
+.snap-content::-webkit-scrollbar {
+    width: 7px;
+}
+.snap-content::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}   
+.snap-content::-webkit-scrollbar-thumb {
+    background: var(--dark-blue); 
+}
+.snap-content::-webkit-scrollbar-thumb:hover {
+    background: var(--teal-blue); 
+}
+
 .content{
-	padding: 0 20px;
+	padding: 0 40px;
 }
 .flip{
 	transform: rotateY(180deg);
