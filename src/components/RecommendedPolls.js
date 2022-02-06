@@ -1,108 +1,75 @@
 import React, {useEffect, useState, useRef} from 'react'
 import {request} from "../services/utilities";
 import {API_URI} from "../services/constants";
-import { geolocated } from "react-geolocated";
+import {Roller} from "react-spinners-css";
 
-const getDirection = (degrees, isLongitude) =>
-    degrees > 0 ? (isLongitude ? "E" : "N") : isLongitude ? "W" : "S";
+const RecommendedPolls = (props) => {
 
-// adapted from http://stackoverflow.com/a/5786281/2546338
-const formatDegrees = (degrees, isLongitude) =>
-    `${0 | degrees}° ${
-        0 | (((degrees < 0 ? (degrees = -degrees) : degrees) % 1) * 60)
-    }' ${0 | (((degrees * 60) % 1) * 60)}" ${getDirection(
-        degrees,
-        isLongitude,
-    )}`;
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState(null);
+    const [longitude, setLongitude] = useState(null);
 
-const RecommendedPollsCore = (props) => {
+    useEffect(() => {
+        try {
+            setLoading(true)
+
+            const error = (position) => {
+
+            }
+
+            const success = async (position) => {
+                let cord = {
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude,
+                }
+                const {data} = await request(`${API_URI}/polls/listAll`, 'POST', true, cord);
+                setData(data);
+                setLoading(false)
+            }
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+
+        } catch (e) {
+            setLoading(false)
+            console.log(e)
+
+        }
+    }, []);
 
 
-  useEffect(() => {
-    __List();
-  }, []);
 
+    return (
 
-  const __List = async () => {
-    try {
-      console.log(formatDegrees(props.coords.latitude, false))
-      console.log({available: !props.isGeolocationAvailable, enabled: !props.isGeolocationEnabled, cords : props.coords})
-      const rs = await request(`${API_URI}/polls/listAll`, 'POST', true, {});
-      console.log(rs)
+        <>
+            <div className="container">
+                <h4>Recommended Polls</h4>
+                <div className="recent-poll-wrap">
+                    <div className="recent-polls home-polls">
+                        {loading && (
+                            <Roller/>
+                        )}
 
-      //setItems([]);
-    } catch (e) {
-      console.log(e)
-
-    }
-  }
-
-  return (
-
-      <>
-        <div className="container">
-          <h4>Recommended Polls</h4>
-          <div className="recent-poll-wrap">
-            <div className="recent-polls home-polls">
-              <div className="item">
-                <h4>
-                  <a href="vote-now.html">Which state is richer?</a>
-                </h4>
-                <span className="votes">
-                <a href="vote-now.html">576 / public</a>
-              </span>
-              </div>
-              <div className="item">
-                <h4>
-                  <a href="vote-now.html">Will Tinubu run in 2023?</a>
-                </h4>
-                <span className="votes">
-                <a href="vote-now.html">22,576 / politics</a>
-              </span>
-              </div>
-              <div className="item">
-                <h4>
-                  <a href="vote-now.html">
-                    Bitcoin, will it be legalized in Nigeria?
-                  </a>
-                </h4>
-                <span className="votes">
-                <a href="vote-now.html">91,198 / economy</a>
-              </span>
-              </div>
-              <div className="item">
-                <h4>
-                  <a href="vote-now.html">Who wins 20/21 Champions League?</a>
-                </h4>
-                <span className="votes">
-                <a href="vote-now.html">11,223 / sports</a>
-              </span>
-              </div>
-              <div className="item">
-                <h4>
-                  <a href="vote-now.html">
-                    Would you generate your own electricity?
-                  </a>
-                </h4>
-                <span className="votes">
-                <a href="vote-now.html">6,346 / public</a>
-              </span>
-              </div>
+                        {data && data.map((eachPoll, key) => (
+                            <div className="item" key={key}>
+                                <h4>
+                                    <a href="vote-now.html">{eachPoll.question}</a>
+                                </h4>
+                                <span className="votes">
+                                <a href="vote-now.html">{eachPoll?.counters?.value || 0} / {eachPoll.category.name}</a>
+                              </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-      </>
+        </>
 
-  )
+    )
 }
 
-RecommendedPollsCore.propTypes = { ...RecommendedPollsCore.propTypes };
 
-export const RecommendedPolls = geolocated({
-  positionOptions: {
-    enableHighAccuracy: false,
-  },
-  userDecisionTimeout: 5000,
-})(RecommendedPollsCore);
+export default RecommendedPolls;
 

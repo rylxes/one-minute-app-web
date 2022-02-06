@@ -1,31 +1,32 @@
 import React, {useEffect, useState} from 'react'
+import {Link} from "react-router-dom";
 
 
 const SideBar = () => {
-    
+
     return (
         <>
-            <a className="menu-item" href="index.html">
+            <Link className="menu-item" to="/">
                 <i className="las la-home"></i>
                 <em>Home</em>
-            </a>
-            <a className="menu-item" href="add-new.html">
+            </Link>
+            <Link className="menu-item" to="/add-new">
                 <i className="las la-plus-circle"></i>
                 <em>Add New Poll</em>
-            </a>
-            <a className="menu-item" href="my-polls.html">
+            </Link>
+
+            <Link className="menu-item" to="/my-polls">
                 <i className="las la-poll"></i>
                 <em>My Polls</em>
-            </a>
-
-            <a className="menu-item" href="my-profile.html">
+            </Link>
+            <Link className="menu-item" to="/my-profile">
                 <i className="las la-user"></i>
                 <em>My Profile</em>
-            </a>
-            <a className="menu-item" href="settings.html">
+            </Link>
+            <Link className="menu-item" to="/settings">
                 <i className="las la-cog"></i>
                 <em>Settings</em>
-            </a>
+            </Link>
         </>
     )
 }
