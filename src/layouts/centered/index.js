@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import SideBar from "../../components/SideBar";
 import SearchBar from "../../components/SearchBar";
 import ProfileCrumb from "../../components/ProfileCrumb";
 import Footer from "../../components/Footer";
 import {Link} from "react-router-dom";
+import SSRStorage from '../../services/storage';
+import {isNil} from 'lodash-es';
+import {v4 as uuidv4} from 'uuid';
 
-
-
-
+const storage = new SSRStorage();
 const Centered = ({children}) => {
 
     const [isActive, setActive] = useState("false");
@@ -25,6 +26,20 @@ const Centered = ({children}) => {
     const handleSearch = () => {
         setSearch(!isSearch);
     };
+    useEffect(() => {
+        setHash()
+    }, [])
+
+    const setHash = async () => {
+        let values = await storage.getLocalStorage('UUID')
+        let deviceID = await storage.getLocalStorage('DEVICE_ID')
+        if (isNil(values)) {
+            storage.setLocalStorage('UUID', uuidv4())
+        }
+        if (isNil(deviceID)) {
+            storage.setLocalStorage('DEVICE_ID', uuidv4())
+        }
+    }
 
     return (
         <div className="left-sidebar">
@@ -83,10 +98,10 @@ const Centered = ({children}) => {
                     </div>
 
 
-                    <div id="content" className={isActive ? "snap-content close-menu" : "snap-content open-menu"} data-component="MainContent">
+                    <div id="content" className={isActive ? "snap-content close-menu" : "snap-content open-menu"}
+                         data-component="MainContent">
                         {children}
                     </div>
-
 
 
                     <Footer> </Footer>

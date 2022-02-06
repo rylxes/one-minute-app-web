@@ -1,6 +1,5 @@
 import React from 'react'
-import {NotificationManager} from 'react-notifications'
-import '../css/react-notifications.css'
+import '../assets/css/react-notifications.css'
 import {Alert} from "../components/alerts";
 
 
