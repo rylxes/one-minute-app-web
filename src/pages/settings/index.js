@@ -5,7 +5,8 @@ import {Roller} from "react-spinners-css";
 import {request} from "../../services/utilities";
 import {API_URI} from "../../services/constants";
 import SSRStorage from '../../services/storage';
-import {NotificationError, NotificationSuccess} from "../../services/notifications";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const storage = new SSRStorage();
 const Index = () => {
@@ -50,6 +51,7 @@ const Index = () => {
             })
             storage.setLocalStorage('SETTINGS', formData)
             setLoading(false)
+            toast("Settings saved!");
             setSuccess(true)
 
         } catch (e) {
@@ -67,7 +69,7 @@ const Index = () => {
 
             {success && (
                 <div className="w-full mb-4">
-                    <NotificationSuccess message="Settings saved"/>
+                    <ToastContainer />
                 </div>
             )}
 

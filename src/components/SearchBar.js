@@ -14,16 +14,15 @@ const SearchBar = () => {
                         <fieldset>
 
                             <div className="formFieldWrap">
-                                <input onFocus="if (this.value=='Search') this.value = ''"
-                                        onBlur="if (this.value=='') this.value = 'Search Polls'" type="text"
+                                <input type="text"
                                         name="searchField"
-                                        value="Search Polls" className="contactField" id="searchField"/>
+                                        value="Search Polls" className="contactField"/>
                             </div>
 
                             <div className="formSubmitButtonErrorsWrap">
                                 <input type="submit"
                                         className="buttonWrap button button-blue searchSubmitButton"
-                                        id="searchSubmitButton" value="Search" data-formId="contactForm"/>
+                                        id="searchSubmitButton" value="Search"/>
                             </div>
                         </fieldset>
                     </form>

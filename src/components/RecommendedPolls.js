@@ -9,12 +9,13 @@ const RecommendedPolls = (props) => {
     const [data, setData] = useState(null);
     const [longitude, setLongitude] = useState(null);
 
-    useEffect(() => {
+    const load = async () => {
         try {
             setLoading(true)
 
-            const error = (position) => {
-
+            const error = (error) => {
+                console.log(error)
+                setLoading(false)
             }
 
             const success = async (position) => {
@@ -29,6 +30,8 @@ const RecommendedPolls = (props) => {
 
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(success, error);
+            }else{
+                setLoading(false)
             }
 
         } catch (e) {
@@ -36,6 +39,9 @@ const RecommendedPolls = (props) => {
             console.log(e)
 
         }
+    }
+    useEffect(() => {
+        load()
     }, []);
 
 
