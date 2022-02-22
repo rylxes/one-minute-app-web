@@ -281,18 +281,7 @@ const Index = () => {
                                            name="closeDate"
                                            ref={register({required: true})}
                                            placeholder="YYYY-MM-DD"/>
-
-                                    <Controller
-                                        control={control}
-                                        name='date-input'
-                                        render={({field}) => (
-                                            <DatePicker
-                                                placeholderText='Select date'
-                                                onChange={(date) => field.onChange(date)}
-                                                selected={field.value}
-                                            />
-                                        )}
-                                    />
+                                           
                                 </div>
                             </fieldset>
                             <div className="row">
