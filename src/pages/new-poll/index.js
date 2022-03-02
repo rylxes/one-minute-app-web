@@ -6,14 +6,15 @@ import SSRStorage from '../../services/storage';
 import * as moment from 'moment';
 import {isNil} from 'lodash-es';
 import {ToastContainer} from "react-toastify";
-import DatePicker from 'react-datepicker'
-
+import Select from "react-dropdown-select";
+import {useHistory} from "react-router-dom";
 
 const storage = new SSRStorage();
 const maxNumberOfTitleCharacters = 25;
 const maxNumberOfQuestionCharacters = 200;
 
 const Index = () => {
+    const history = useHistory();
     const {control, register, handleSubmit, reset, formState} = useForm();
     const {errors} = formState;
     const [category, setCategory] = useState([]);
@@ -24,15 +25,47 @@ const Index = () => {
     const [numberOfQuestionCharacters, setQuestionChar] = useState(0);
     const [answerType, setAnswerType] = useState(0);
     const [imageURL, setImageURL] = useState(null);
+    const [categoryForm, setCategoryForm] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState([]);
     const [defaultDate, setDefaultDate] = useState(null);
     const [formData, setFormData] = useState({});
 
 
     const submitForm = async (data) => {
-        console.log(data);
+
+
+        let formData = {
+            ...data, ...{
+                openToAll: !isAuth ? true : data.openToAll
+            }
+        }
+        reset(formData)
+        console.log(formData);
+        console.log(categoryForm);
+        formData.image = null;
+        formData.category = formData.category ?? selectedCategory;
+        storage.setLocalStorage('toSubmit', formData);
+        storage.setLocalStorage('imageURL', imageURL);
+        history.push('/poll-preview');
     }
 
+    const setCatValues = (val) => {
+        setCategoryForm(val.pop())
+    }
     const loadPoll = async () => {
+        let formType = storage.getLocalStorage('formType');
+        if (formType === 'edit') {
+            let formData = storage.getLocalStorage('toSubmit');
+            let imageURL = storage.getLocalStorage('imageURL');
+            formData.image = null;
+            reset(formData)
+            setAnswerType(formData.answerType);
+            setCategoryForm(formData.category.pop().name)
+            setSelectedCategory(formData.category)
+            //register({name: 'category'}, {defaultValue: formData.category})
+            console.log(formData)
+            setImageURL(imageURL)
+        }
         // if (!isNil(this.theID)) {
         //     console.log(this.theID)
         //
@@ -121,6 +154,8 @@ const Index = () => {
 
     const removePhoto = (e) => {
         setImageURL(null)
+        storage.setLocalStorage('imageURL', null);
+
     }
     const uploadImage = (e) => {
         console.log(e.target.files)
@@ -132,7 +167,7 @@ const Index = () => {
 
     useEffect(() => {
         defaults()
-        //loadPoll()
+        loadPoll()
         loadPollType();
         loadCategories();
         // this.editForm();
@@ -167,16 +202,32 @@ const Index = () => {
                                     </div>
                                 </div>
                                 <div className="formFieldWrap col-6">
-                                    <select name="category"
-                                            ref={register({required: true})}
-                                            className="contactField selectField">
-                                        {category && category.map((value, key) => (
-                                            <option key={key} value={value.id}
-                                                    title="Select Category">{value.name}</option>
-                                        ))}
-                                    </select>
+                                    <Controller
+                                        as={<Select options={category}
+                                                    labelField='name'
+                                                    valueField='id'/>}
+                                        name="category"
+                                        placeholder={categoryForm}
+                                        control={control}
+                                        defaultValue={null}
+                                        className="contactField"
+                                        ref={register({required: true})}
+                                    />
                                 </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
                             </fieldset>
+
                             <fieldset className="row">
                                 <div className="formFieldWrap col-6">
                                         <textarea name="question" placeholder="Type your question here"
@@ -251,7 +302,7 @@ const Index = () => {
                                     <div className="upload-wrap">
                                         <input name="image" className="pollImage" type="file"
                                                onChange={uploadImage}
-                                               ref={register({required: true})}
+                                               ref={register()}
                                                accept="image/png, image/gif, image/jpeg"/>
                                     </div>
 
@@ -278,7 +329,7 @@ const Index = () => {
                                     </div>
                                     <div className="form-group check-wrap">
                                         <label className="c-label">Yes<input type="checkbox"
-                                                                             ref={register({required: true})}
+                                                                             ref={register()}
                                                                              name="openToAll"
                                                                              className="checkbox"/><span
                                             className="checkmark"></span></label>
@@ -290,7 +341,7 @@ const Index = () => {
                                     {isAuth && <input className="form-control textField" type="text"
                                                       name="closeDate"
                                                       readOnly={!isAuth}
-                                                      ref={register({required: true})}
+                                                      ref={register()}
                                                       placeholder="YYYY-MM-DD"/>
                                     }
 
