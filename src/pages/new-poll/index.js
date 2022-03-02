@@ -24,6 +24,8 @@ const Index = () => {
     const [numberOfQuestionCharacters, setQuestionChar] = useState(0);
     const [answerType, setAnswerType] = useState(0);
     const [imageURL, setImageURL] = useState(null);
+    const [defaultDate, setDefaultDate] = useState(null);
+    const [formData, setFormData] = useState({});
 
 
     const submitForm = async (data) => {
@@ -72,16 +74,23 @@ const Index = () => {
         let userDetails = storage.getLocalStorage('USER_DETAILS') || {};
         let duration = parseInt(settings?.POLL_DURATION || 2);
         let new_date = moment(moment(), "YYYY-MM-DD").add(duration, 'days').format("YYYY-MM-DD")
-
+        setDefaultDate(new_date);
         let formData = {
             closeDate: new_date,
             emailField: userDetails?.email || null,
             openToAll: true
         }
         console.log(formData)
+        setFormData(formData)
+        reset(formData)
         //  this.data.setValue(formData);
 
     }
+    const resetForm = async () => {
+        reset(formData)
+        removePhoto();
+    }
+
 
     const loadPollType = async () => {
         const {data} = await request(`${API_URI}/poll_types`, 'GET', true);
@@ -248,7 +257,7 @@ const Index = () => {
 
                                     {imageURL && (
                                         <>
-                                            <img src={imageURL} alt="Image"/>
+                                            <img src={imageURL} alt="Image" width={400} height={400}/>
                                             <button onClick={removePhoto} className="button button-red">Remove
                                             </button>
                                         </>
@@ -277,11 +286,23 @@ const Index = () => {
                                 </div>
                                 <div className="formFieldWrap col-6">
                                     <p>Close Date</p>
-                                    <input className="form-control textField" type="text"
-                                           name="closeDate"
-                                           ref={register({required: true})}
-                                           placeholder="YYYY-MM-DD"/>
-                                           
+
+                                    {isAuth && <input className="form-control textField" type="text"
+                                                      name="closeDate"
+                                                      readOnly={!isAuth}
+                                                      ref={register({required: true})}
+                                                      placeholder="YYYY-MM-DD"/>
+                                    }
+
+
+                                    {/*{!isAuth && <input className="form-control textField" type="text"*/}
+                                    {/*                   name="closeDate"*/}
+                                    {/*                   readOnly*/}
+                                    {/*                   value={defaultDate}*/}
+                                    {/*                   ref={register({required: true})}/>*/}
+                                    {/*}*/}
+
+
                                 </div>
                             </fieldset>
                             <div className="row">
@@ -299,7 +320,9 @@ const Index = () => {
                                         <div className="submenu tooltip-info">
                                             Email verification required to edit this item.
                                         </div>
-                                        <input type="email" name="emailField" placeholder="you@yourdomain.com"
+                                        <input type="email" name="emailField"
+                                               readOnly={isAuth}
+                                               placeholder="you@yourdomain.com"
                                                ref={register({required: true})}
                                                className="contactField textField"/>
                                     </div>
@@ -307,7 +330,12 @@ const Index = () => {
                                 <div className="formSubmitButtonErrorsWrap col-12">
                                     <input type="submit"
                                            className="buttonWrap button button-blue searchSubmitButton"
-                                           id="searchSubmitButton" value="Preview"/>
+                                           value="Preview"/>
+
+                                    <a onClick={resetForm}
+                                       className="buttonWrap button button-red searchSubmitButton">Reset
+                                        Poll
+                                    </a>
                                 </div>
                             </div>
                         </form>
