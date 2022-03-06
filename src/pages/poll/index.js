@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import RecommendedPolls from "../../components/RecommendedPolls";
-import SharedWithMe from "../../components/SharedWithMe";
+import {useParams, useHistory} from "react-router-dom";
 import {request} from "../../services/utilities";
 import {API_URI} from "../../services/constants";
 import SSRStorage from '../../services/storage';
@@ -11,7 +10,7 @@ const storage = new SSRStorage();
 
 
 const Index = () => {
-
+    const history = useHistory();
     const [loading, setLoading] = useState(false);
     const [pollList, setPollList] = useState([]);
     const [pageNumber, setPageNumber] = useState(null);
@@ -22,6 +21,10 @@ const Index = () => {
 
         loadData();
     }, [])
+
+    const viewPoll = async (id) => {
+        history.push('/view-poll/' + id);
+    }
 
     const loadMorePoll = async () => {
         let page = {
@@ -71,7 +74,7 @@ const Index = () => {
                                             {eachPoll.url && <img src={eachPoll.url}/>}
                                         </div>
                                         <div className="contents">
-                                            <h4><a href="view-poll.html" title="View Poll">{eachPoll.title}
+                                            <h4><a onClick={() => viewPoll(eachPoll.id)} title="View Poll">{eachPoll.title}
                                                 <span>{eachPoll.question}</span></a>
                                             </h4>
 

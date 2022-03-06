@@ -3,8 +3,10 @@ import {Switch, Route} from 'react-router-dom'
 import Dashboard from './pages/home'
 import NewPoll from './pages/new-poll/index'
 import PollPreview from './pages/new-poll/preview'
+import PollSubmit from './pages/new-poll/poll-submitted'
 import Settings from './pages/settings'
-import MyPoll from './pages/my-poll'
+import MyPoll from './pages/poll/index'
+import ViewPoll from './pages/poll/view'
 import MyProfile from './pages/my-profile'
 
 
@@ -15,14 +17,20 @@ const Routes = () => {
             <Route path="/my-profile">
                 <MyProfile/>
             </Route>
-            <Route path="/add-new">
+            <Route path="/add-new/:id">
                 <NewPoll/>
             </Route>
             <Route path="/poll-preview">
                 <PollPreview/>
             </Route>
+            <Route path="/poll-submitted/:id">
+                <PollSubmit/>
+            </Route>
             <Route path="/my-polls">
                 <MyPoll/>
+            </Route>
+            <Route path="/view-poll/:id">
+                <ViewPoll/>
             </Route>
             <Route path="/settings">
                 <Settings/>

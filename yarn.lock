@@ -9704,6 +9704,11 @@
   dependencies:
     "prop-types" "^15.5.8"
 
+"react-google-charts@^4.0.0":
+  "integrity" "sha512-9OG0EkBb9JerKEPQYdhmAXnhGLzOdOHOPS9j7l+P1a3z1kcmq9mGDa7PUoX/VQUY4IjZl2/81nsO4o+1cuYsuw=="
+  "resolved" "https://registry.npmjs.org/react-google-charts/-/react-google-charts-4.0.0.tgz"
+  "version" "4.0.0"
+
 "react-hook-form@^6.2.0":
   "integrity" "sha512-prq82ofMbnRyj5wqDe8hsTRcdR25jQ+B8KtCS7BLCzjFHAwNuCjRwzPuP4eYLsEBjEIeYd6try+pdLdw0kPkpg=="
   "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-6.15.8.tgz"

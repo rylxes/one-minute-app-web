@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import RecommendedPolls from "../../components/RecommendedPolls";
-import SharedWithMe from "../../components/SharedWithMe";
 import {request} from "../../services/utilities";
 import {API_URI} from "../../services/constants";
 import SSRStorage from '../../services/storage';

@@ -4,11 +4,12 @@ import {API_URI} from "../services/constants";
 import SSRStorage from '../services/storage';
 import {Roller} from "react-spinners-css";
 import VoteResult from "./alerts/VoteResult";
+import {useHistory} from "react-router-dom";
 
 const storage = new SSRStorage();
 
 function SharedWithMe() {
-
+    const history = useHistory();
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
     const [isActive, setActive] = useState("false");
@@ -16,6 +17,9 @@ function SharedWithMe() {
         setActive(!isActive);
     };
 
+    const viewPoll = async (id) => {
+        history.push('/view-poll/' + id);
+    }
     const load = async () => {
         try {
             setLoading(true)
@@ -57,7 +61,7 @@ function SharedWithMe() {
                             </div>
                             <div className="contents">
                                 <h4>
-                                    <a href="view-poll.html" title="View Poll">
+                                    <a onClick={() => viewPoll(eachPoll.id)} title="View Poll">
                                         {eachPoll.title}
                                         <span>
                         {eachPoll.question}
