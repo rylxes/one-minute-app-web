@@ -39,7 +39,7 @@ const ChartPoll = ({poll, pollOptions}) => {
                             <p>No</p>
                         </div>
                     </div>
-
+`
                 </div>
                 <div className="tf-bar-legend">
                     <p><strong>Total Views:</strong> 11,688</p>
