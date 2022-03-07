@@ -17,6 +17,9 @@ const Routes = () => {
             <Route path="/my-profile">
                 <MyProfile/>
             </Route>
+            <Route path="/add-new">
+                <NewPoll/>
+            </Route>
             <Route path="/add-new/:id">
                 <NewPoll/>
             </Route>
