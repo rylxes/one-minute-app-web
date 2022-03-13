@@ -1,12 +1,14 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Dashboard from './pages/home'
+import Dashboard from './pages/home/index'
+import SearchResult from './pages/home/search'
 import NewPoll from './pages/new-poll/index'
 import PollPreview from './pages/new-poll/preview'
 import PollSubmit from './pages/new-poll/poll-submitted'
 import Settings from './pages/settings'
 import MyPoll from './pages/poll/index'
-import Vote from './pages/poll/vote'
+import Vote from './pages/vote/vote'
+import VoteComplete from './pages/vote/vote-complete'
 import ViewPoll from './pages/poll/view'
 import MyProfile from './pages/my-profile'
 
@@ -27,6 +29,9 @@ const Routes = () => {
       <Route path="/vote/:id">
         <Vote/>
       </Route>
+      <Route path="/vote-complete/:id">
+        <VoteComplete/>
+      </Route>
       <Route path="/poll-preview">
         <PollPreview/>
       </Route>
@@ -45,6 +50,9 @@ const Routes = () => {
 
       <Route exact path="/">
         <Dashboard/>
+      </Route>
+      <Route exact path="/search">
+        <SearchResult/>
       </Route>
     </Switch>
   )

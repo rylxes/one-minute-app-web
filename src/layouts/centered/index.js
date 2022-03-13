@@ -72,7 +72,7 @@ const Centered = ({children}) => {
                         </div>
 
                         <div className="sidebar-menu">
-                            <SideBar></SideBar>
+                            <SideBar/>
                             <a className="menu-item close-sidebar" onClick={handleMenu}>
                                 <i className="las la-times"></i>
                                 <em>Close</em>
@@ -85,7 +85,7 @@ const Centered = ({children}) => {
                         <div className="search-header">
                             <a className="close-wrap" onClick={handleSearch}><i className="las la-times"></i></a>
                         </div>
-                        <SearchBar></SearchBar>
+                        <SearchBar/>
                     </div>
                     <div id="user-dropdown" className={isProfile ? "icon-dropdown hide" : "icon-dropdown show"}>
                         <div className="header">
@@ -94,7 +94,7 @@ const Centered = ({children}) => {
                                 <i className="las la-times"></i>
                             </a>
                         </div>
-                        <ProfileCrumb></ProfileCrumb>
+                        <ProfileCrumb/>
                     </div>
 
 

@@ -5,8 +5,8 @@ import SSRStorage from '../../services/storage';
 import { useParams, useHistory } from "react-router-dom";
 import * as moment from "moment";
 import { isNil } from 'lodash-es';
-import { ToastContainer } from "react-toastify";
-import VoteOptions from './vote-options';
+import { toast, ToastContainer } from "react-toastify";
+import VoteOptions from '../../components/vote-options';
 import { unitOfTime } from 'moment';
 import { useForm } from 'react-hook-form';
 
@@ -14,6 +14,7 @@ const storage = new SSRStorage();
 //9,1,
 
 const Index = () => {
+  const history = useHistory();
   let { id } = useParams();
   const { control, register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
@@ -25,6 +26,8 @@ const Index = () => {
   const [optionValues, setOptionValues] = useState([]);
   const [poll, setPoll] = useState([]);
   const [hasNotExpired, setHasNotExpired] = useState([]);
+  const [isToast, setToast] = useState(false);
+
 
   const loadPoll = async () => {
 
@@ -47,13 +50,11 @@ const Index = () => {
     let canEdit = false;
     if (!isNil(poll)) {
       let { optionValues, sum } = calculateUtils(poll);
-      console.log(optionValues)
       setSum(sum)
       setOptionValues(optionValues)
       if (!isNil(poll.close_date)) {
         const mydate = moment(poll.close_date).startOf('day');
         let hasNotClosed = hasNotExpired = moment().startOf('day').isSameOrBefore(mydate);
-        console.log(mydate)
       }
 
 
@@ -82,8 +83,23 @@ const Index = () => {
     setHasNotExpired(hasNotExpired)
   }
 
-  const submitForm = async (data) => {
-    console.log({data, vote})
+  const submitForm = async () => {
+    console.log({ vote })
+
+    if (!vote) {
+      toast.error("Select a Vote before submitting ");
+      setToast(true)
+      return;
+    }
+    let toSubmit = {
+      uuid: storage.getLocalStorage('UUID'),
+      poll_id: id,
+      value: vote,
+    };
+
+    const { data } = await request(`${API_URI}/votes`, 'POST', true, toSubmit);
+    console.log(data);
+    history.push('/vote-complete/' + data?.poll_id);
   }
   const onVote = async (id) => {
     setVote(id);
@@ -104,8 +120,14 @@ const Index = () => {
 
   return (<>
     <div className="content">
+      {isToast && (
+        <div className="w-full mb-4">
+          <ToastContainer/>
+        </div>
+      )}
       <form
-        onSubmit={handleSubmit(submitForm)}>
+        onSubmit={handleSubmit(submitForm)}
+      >
         <div className="header-clear"></div>
 
         <div className="vote-title full-width">

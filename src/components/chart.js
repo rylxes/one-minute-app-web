@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import {request} from "../../services/utilities";
-import {API_URI} from "../../services/constants";
-import SSRStorage from '../../services/storage';
+import {request} from "../services/utilities";
+import {API_URI} from "../services/constants";
+import SSRStorage from '../services/storage';
 import {useParams, useHistory} from "react-router-dom";
 import * as moment from "moment";
 import {isNil} from 'lodash-es';

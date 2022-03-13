@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import RecommendedPolls from "../../components/RecommendedPolls";
 import SharedWithMe from "../../components/SharedWithMe";
 import SSRStorage from "../../services/storage";
+import SearchResult from '../../components/SearchResult';
 // import './App.css';
 
 
@@ -16,17 +17,7 @@ const Index = ({ children }) => {
   return (
     <div className="content">
       <div className="header-clear"></div>
-
-      <div className="container">
-        <h4>Welcome, {userDetails?.name || 'Guest'}</h4>
-      </div>
-
-      <div className="decoration"></div>
-
-      <RecommendedPolls/>
-      <SharedWithMe/>
-
-
+      <SearchResult/>
       <div className="bottom-fix"></div>
 
     </div>
