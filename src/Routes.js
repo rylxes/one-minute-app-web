@@ -11,6 +11,7 @@ import Vote from './pages/vote/vote'
 import VoteComplete from './pages/vote/vote-complete'
 import ViewPoll from './pages/poll/view'
 import MyProfile from './pages/my-profile'
+import ShareSuccess from './pages/share/success'
 
 
 const Routes = () => {
@@ -28,6 +29,9 @@ const Routes = () => {
       </Route>
       <Route path="/vote/:id">
         <Vote/>
+      </Route>
+      <Route path="/share-success/:id">
+        <ShareSuccess/>
       </Route>
       <Route path="/vote-complete/:id">
         <VoteComplete/>

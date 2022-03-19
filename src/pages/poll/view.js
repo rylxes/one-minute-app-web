@@ -6,7 +6,7 @@ import {useParams, useHistory} from "react-router-dom";
 import * as moment from "moment";
 import {isNil} from 'lodash-es';
 import {ToastContainer} from "react-toastify";
-import ChartPoll from "../../components/chart";
+import ChartPoll from "../../components/Chart";
 
 const storage = new SSRStorage();
 

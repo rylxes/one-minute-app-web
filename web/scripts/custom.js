@@ -53,61 +53,61 @@ $(document).ready(function () {
 		$div.html("");
 		bar.append($div);
 
-		var $span = $("<span>");
-		$span.html(poll);
-		bar.append($span);
-	});	
+	// 	var $span = $("<span>");
+	// 	$span.html(poll);
+	// 	bar.append($span);
+	// });	
 		
 	
 	
-	/** 5 star rating bar chart **/
-	$('.hbar').each(function() {
-		var hbar = $(this);
-		var size = hbar.data("poll"); 
-		var pwidth = hbar.width(); 
-		var fwidth = ( (size / 100 ) * pwidth ); 
-		var votes = hbar.data("votes").toLocaleString();
+	// /** 5 star rating bar chart **/
+	// $('.hbar').each(function() {
+	// 	var hbar = $(this);
+	// 	var size = hbar.data("poll"); 
+	// 	var pwidth = hbar.width(); 
+	// 	var fwidth = ( (size / 100 ) * pwidth ); 
+	// 	var votes = hbar.data("votes").toLocaleString();
 		
-		var ss = {
-			id: "hbar-child",
-			class: "hbar-track",
-			css: {
-			  "width": fwidth
-			}
-		};
-		var $div = $("<div>", ss);
-		$div.html("");
-		hbar.append($div);
+	// 	var ss = {
+	// 		id: "hbar-child",
+	// 		class: "hbar-track",
+	// 		css: {
+	// 		  "width": fwidth
+	// 		}
+	// 	};
+	// 	var $div = $("<div>", ss);
+	// 	$div.html("");
+	// 	hbar.append($div);
 
-		var $span = $("<span>");
-		$span.html(votes);
-		hbar.append($span);
-	});
+	// 	var $span = $("<span>");
+	// 	$span.html(votes);
+	// 	hbar.append($span);
+	// });
 	
-	/** A - E bar chart **/
-	$('.vbar').each(function() {
-		var vbar = $(this);
-		var size = vbar.data("poll"); 
-		var pheight = vbar.height(); 
-		var fheight = ( (size / 100 ) * pheight ); 
-		var votes = vbar.data("votes").toLocaleString();
+	// /** A - E bar chart **/
+	// $('.vbar').each(function() {
+	// 	var vbar = $(this);
+	// 	var size = vbar.data("poll"); 
+	// 	var pheight = vbar.height(); 
+	// 	var fheight = ( (size / 100 ) * pheight ); 
+	// 	var votes = vbar.data("votes").toLocaleString();
 		
-		var ss = {
-			id: "vbar-child",
-			class: "vbar-track",
-			css: {
-			  "height": fheight
-			}
-		};
+	// 	var ss = {
+	// 		id: "vbar-child",
+	// 		class: "vbar-track",
+	// 		css: {
+	// 		  "height": fheight
+	// 		}
+	// 	};
 		
-		var $span = $("<span>");
-		$span.html(votes);
-		vbar.append($span);
+	// 	var $span = $("<span>");
+	// 	$span.html(votes);
+	// 	vbar.append($span);
 		
-		var $div = $("<div>", ss);
-		$div.html("");
-		vbar.append($div);		
-	});
+	// 	var $div = $("<div>", ss);
+	// 	$div.html("");
+	// 	vbar.append($div);		
+	// });
 });
 
 $( document ).ready(function() { 
