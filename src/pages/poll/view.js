@@ -124,7 +124,7 @@ const Index = () => {
                     </div>
                 </div>
 
-               <ChartPoll poll={poll} pollOptions={pollOptions}></ChartPoll>
+               <ChartPoll poll={poll} pollOptions={pollOptions}/>
                 
                 <div className="decoration"></div>
 
